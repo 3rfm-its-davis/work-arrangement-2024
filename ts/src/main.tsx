@@ -1,10 +1,11 @@
 import ReactDOM from "react-dom/client";
 import { App } from "./App.tsx";
 import "./index.css";
-import { Provider, defaultTheme } from "";
+import { FluentProvider, webLightTheme } from "@fluentui/react-components";
+import "@glideapps/glide-data-grid/dist/index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <Provider theme={defaultTheme}>
+  <FluentProvider theme={webLightTheme}>
     <App />
-  </Provider>
+  </FluentProvider>
 );

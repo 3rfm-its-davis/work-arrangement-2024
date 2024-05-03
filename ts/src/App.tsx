@@ -1,24 +1,32 @@
-import { Flex, Grid, View } from "@adobe/react-spectrum";
 import { Sidebar } from "./components/organisms/Sidebar";
 import "./App.css";
 import { Header } from "./components/organisms/Header";
+import { TableGrid } from "./components/organisms/TableGrid";
 
 export const App = () => {
   return (
-    <Grid
-      areas={["header  header", "sidebar content", "footer  footer"]}
-      columns={["1fr", "3fr"]}
-      rows={["size-600", "calc(100vh - size-1200 - 1rem)", "size-600"]}
-      gap={"size-100"}
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "20rem calc(100% - 20rem)",
+        gridTemplateAreas: `
+          "header header"
+          "sidebar content"
+          "footer footer"
+        `,
+        height: "100vh",
+      }}
     >
-      <View gridArea={"header"}>
+      <div style={{ gridArea: "header", height: "3rem" }}>
         <Header />
-      </View>
-      <View height={"100%"} gridArea={"sidebar"} overflow={"auto"}>
+      </div>
+      <div style={{ gridArea: "sidebar", overflowY: "scroll", height: "100%" }}>
         <Sidebar />
-      </View>
-      <View gridArea={"content"}>main</View>
-      <View gridArea={"footer"}>footer</View>
-    </Grid>
+      </div>
+      <div style={{ gridArea: "content", width: "100%" }}>
+        <TableGrid />
+      </div>
+      <div style={{ gridArea: "footer", height: "3rem" }}>Footer</div>
+    </div>
   );
 };

@@ -43,6 +43,13 @@ km <- kmeans(
   iter.max = 1000
 )
 
+data <- data %>%
+  mutate(cluster = km$cluster) %>%
+  mutate(
+    cluster =
+      rows[cluster]
+  )
+
 center_table <- km$centers %>%
   round(3)
 

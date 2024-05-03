@@ -23,6 +23,7 @@ source(file.path("data_process", "adjust_work_hours.R"))
 source(file.path("data_process", "factor_analysis.R"))
 source(file.path("data_process", "recoding.R"))
 source(file.path("data_process", "normalize_weights.R"))
+source(file.path("data_process", "cluster.R"))
 
 write_sav(
   data,

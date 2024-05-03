@@ -3,11 +3,11 @@ import jsonData from "../data/data.json";
 import dictionary from "../data/dictionary.json";
 
 type Dictionary = {
-  [key: string]: {
+  [propName: string]: {
     type: string;
     question: string | null;
     labels?: {
-      [key: string]: number;
+      [propName: string]: number;
     };
   };
 };
@@ -22,7 +22,7 @@ type DictionaryFormatted = {
   }[];
 }[];
 
-export const data = jsonData as { [key: string]: string | number }[];
+export const data = jsonData as { [propName: string]: string | number }[];
 const dictionaryFormatted = Object.entries(dictionary as Dictionary).map(
   ([name, value]) => ({
     name,

@@ -1,10 +1,5 @@
 exex_mnl_cluster <- function() {
   database <- get("data", envir = globalenv()) %>%
-    mutate(cluster = km$cluster) %>%
-    mutate(
-      cluster =
-        rows[cluster]
-    ) %>%
     select(
       row_index,
       age,
