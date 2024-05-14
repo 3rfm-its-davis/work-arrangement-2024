@@ -6,6 +6,7 @@ library(flextable)
 library(R.utils)
 library(httpgd)
 library(cowplot)
+library(NbClust)
 
 source(file.path("data_process", "index.R"))
 

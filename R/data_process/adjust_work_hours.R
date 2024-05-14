@@ -18,7 +18,11 @@ data <- data %>%
     diff_day_6 = C13a_6_4 - hours_day_6,
     diff_day_7 = C13a_7_4 - hours_day_7,
   ) %>%
-  filter(ratio_total >= 0.75 & ratio_total <= 1.33) %>%
+  filter(ratio_total >= 0.75 & ratio_total <= 1.33)
+
+print(nrow(data))
+
+data <- data %>%
   filter(
     ((ratio_day_1 == 0 & abs(diff_day_1) <= 2) | (ratio_day_1 >= 0.5 & ratio_day_1 <= 2)) &
       ((ratio_day_2 == 0 & abs(diff_day_2) <= 2) | (ratio_day_2 >= 0.5 & ratio_day_2 <= 2)) &

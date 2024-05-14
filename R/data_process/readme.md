@@ -45,9 +45,9 @@ Several additional variables; `hours_day_{day}_period_{period}`, `hours_day_{day
 
 ## Adjustment of Work Hours
 
-In the dataset, variables `C3_1` and `C13a_{day}` stand for the reported aggregated work hours for the specific day.
+In the dataset, variables `C13a_{day}` stand for the reported aggregated work hours for the specific day.
 
-Firstly, if the ratio between the two metrics; `C3_1` and `hours_total` are out of the range `c(0.75, 1.33)` (for now), the cases are excluded.
+Firstly, if the ratio between the two metrics; `C13a` and `hours_total` are out of the range `c(0.75, 1.33)` (for now), the cases are excluded.
 
 Also, if any day-level aggregated hours are
 

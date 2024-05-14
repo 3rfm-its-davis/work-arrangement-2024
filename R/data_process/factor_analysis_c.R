@@ -1,13 +1,4 @@
-f <- fa(
-  data %>%
-    select(
-      starts_with("C14_")
-    ) %>%
-    mutate_all(~ replace_na(., 3)),
-  3,
-  rotate = "cluster",
-  scores = "tenBerge"
-)
+is_done <- FALSE
 
 labels <- c(
   "I perform better when I interact with colleagues in person on site.",
@@ -26,20 +17,58 @@ labels <- c(
   "I prefer to shop in a store rather than online."
 )
 
-f$loadings[] %>%
+rows <- 1:14
+
+while (!is_done) {
+  factor <- fa(
+    data %>%
+      select(
+        starts_with("C14_")
+      ) %>%
+      select(all_of(rows)) %>%
+      mutate_all(~ replace_na(., 3)),
+    3,
+    rotate = "cluster",
+    scores = "tenBerge"
+  )
+
+  print(
+    factor$Vaccounted %>%
+      round(3) %>%
+      .[1, ]
+  )
+
+  check_significance <- factor$loadings[] %>%
+    tibble() %>%
+    rowwise() %>%
+    summarize(
+      n = any(abs(.) > 0.3)
+    ) %>%
+    deframe()
+
+
+  if (all(check_significance)) {
+    is_done <- T
+  }
+
+  rows <- rows[check_significance %>% which()]
+}
+
+
+factor$loadings[] %>%
   as_tibble() %>%
-  mutate(statement = labels) %>%
+  mutate(statement = labels[rows]) %>%
   select(statement, everything()) %>%
-  write_csv(file.path("output", "factor_analysis", "loadings.csv"))
+  write_csv(file.path("output", "factor_analysis", "loadings_c.csv"))
 
 data <- data %>%
   left_join(
-    f$scores %>%
+    factor$scores %>%
       as_tibble() %>%
       rename_at(
         vars(starts_with("MR")),
         ~ {
-          paste0("factor_", .x %>% str_remove("MR"))
+          paste0("factor_c_", .x %>% str_remove("MR"))
         }
       ) %>%
       mutate(

@@ -38,7 +38,13 @@ data <- data %>%
     days_place_1 = sum(days_place_1, na.rm = TRUE) %>% as.numeric(),
     days_place_2 = sum(days_place_2, na.rm = TRUE) %>% as.numeric(),
     days_place_3 = sum(days_place_3, na.rm = TRUE) %>% as.numeric(),
-    days_total = days_main_1 + days_main_2 + days_main_3
+    days_total = days_main_1 + days_main_2 + days_main_3,
+    share_main_1 = days_main_1 / days_total,
+    share_main_2 = days_main_2 / days_total,
+    share_main_3 = days_main_3 / days_total,
+    share_place_1 = days_place_1 / days_total,
+    share_place_2 = days_place_2 / days_total,
+    share_place_3 = days_place_3 / days_total
   ) %>%
   left_join(
     data,

@@ -1,4 +1,4 @@
-exex_mnl_cluster <- function() {
+exec_mnl_cluster <- function() {
   database <- get("data", envir = globalenv()) %>%
     select(
       row_index,
@@ -22,7 +22,7 @@ exex_mnl_cluster <- function() {
       as.numeric
     )
 
-  model_name <- "mnl_cluster"
+  model_name <- "iclv_cluster_1"
 
   assign("database", database, envir = globalenv())
 
@@ -39,130 +39,79 @@ exex_mnl_cluster <- function() {
   - Job type (3-level)
   - Primary commute mode
   - Neighborhood type
-  - Home ownership
-  - Factor scores",
+  - Home ownership",
     indivID         = "row_index",
-    outputDirectory = file.path("output", "mnl")
+    outputDirectory = file.path("output", "iclv")
   )
 
   assign("apollo_control", apollo_control, envir = globalenv())
 
   apollo_beta <- c(
-    asc_2 = 0,
-    asc_3 = 0,
-    asc_4 = 0,
-    asc_5 = 0,
-    asc_6 = 0,
-    b_2_age_18_29 = 0,
-    b_3_age_18_29 = 0,
-    b_4_age_18_29 = 0,
-    b_5_age_18_29 = 0,
-    b_6_age_18_29 = 0,
-    b_2_age_45_64 = 0,
-    b_3_age_45_64 = 0,
-    b_4_age_45_64 = 0,
-    b_5_age_45_64 = 0,
-    b_6_age_45_64 = 0,
-    b_2_age_65plus = 0,
-    b_3_age_65plus = 0,
-    b_4_age_65plus = 0,
-    b_5_age_65plus = 0,
-    b_6_age_65plus = 0,
-    b_2_gender_women = 0,
-    b_3_gender_women = 0,
-    b_4_gender_women = 0,
-    b_5_gender_women = 0,
-    b_6_gender_women = 0,
-    b_2_kids_kids = 0,
-    b_3_kids_kids = 0,
-    b_4_kids_kids = 0,
-    b_5_kids_kids = 0,
-    b_6_kids_kids = 0,
-    b_2_genderkids_women_kids = 0,
-    b_3_genderkids_women_kids = 0,
-    b_4_genderkids_women_kids = 0,
-    b_5_genderkids_women_kids = 0,
-    b_6_genderkids_women_kids = 0,
-    b_2_income_50minus = 0,
-    b_3_income_50minus = 0,
-    b_4_income_50minus = 0,
-    b_5_income_50minus = 0,
-    b_6_income_50minus = 0,
-    b_2_income_100_149 = 0,
-    b_3_income_100_149 = 0,
-    b_4_income_100_149 = 0,
-    b_5_income_100_149 = 0,
-    b_6_income_100_149 = 0,
-    b_2_income_150plus = 0,
-    b_3_income_150plus = 0,
-    b_4_income_150plus = 0,
-    b_5_income_150plus = 0,
-    b_6_income_150plus = 0,
-    b_2_education_highschool = 0,
-    b_3_education_highschool = 0,
-    b_4_education_highschool = 0,
-    b_5_education_highschool = 0,
-    b_6_education_highschool = 0,
-    b_2_education_graduate = 0,
-    b_3_education_graduate = 0,
-    b_4_education_graduate = 0,
-    b_5_education_graduate = 0,
-    b_6_education_graduate = 0,
-    b_2_impedance_20_39 = 0,
-    b_3_impedance_20_39 = 0,
-    b_4_impedance_20_39 = 0,
-    b_5_impedance_20_39 = 0,
-    b_6_impedance_20_39 = 0,
-    b_2_impedance_40_59 = 0,
-    b_3_impedance_40_59 = 0,
-    b_4_impedance_40_59 = 0,
-    b_5_impedance_40_59 = 0,
-    b_6_impedance_40_59 = 0,
-    b_2_impedance_60plus = 0,
-    b_3_impedance_60plus = 0,
-    b_4_impedance_60plus = 0,
-    b_5_impedance_60plus = 0,
-    b_6_impedance_60plus = 0,
-    b_2_neighborhood_suburban = 0,
-    b_3_neighborhood_suburban = 0,
-    b_4_neighborhood_suburban = 0,
-    b_5_neighborhood_suburban = 0,
-    b_6_neighborhood_suburban = 0,
-    b_2_neighborhood_town = 0,
-    b_3_neighborhood_town = 0,
-    b_4_neighborhood_town = 0,
-    b_5_neighborhood_town = 0,
-    b_6_neighborhood_town = 0,
-    b_2_jobtype12_professional = 0,
-    b_3_jobtype12_professional = 0,
-    b_4_jobtype12_professional = 0,
-    b_5_jobtype12_professional = 0,
-    b_6_jobtype12_professional = 0,
-    b_2_jobtype12_administrative = 0,
-    b_3_jobtype12_administrative = 0,
-    b_4_jobtype12_administrative = 0,
-    b_5_jobtype12_administrative = 0,
-    b_6_jobtype12_administrative = 0,
-    b_2_homeownership_nonown = 0,
-    b_3_homeownership_nonown = 0,
-    b_4_homeownership_nonown = 0,
-    b_5_homeownership_nonown = 0,
-    b_6_homeownership_nonown = 0,
-    b_2_factor_score_1 = 0,
-    b_3_factor_score_1 = 0,
-    b_4_factor_score_1 = 0,
-    b_5_factor_score_1 = 0,
-    b_6_factor_score_1 = 0,
-    b_2_factor_score_2 = 0,
-    b_3_factor_score_2 = 0,
-    b_4_factor_score_2 = 0,
-    b_5_factor_score_2 = 0,
-    b_6_factor_score_2 = 0,
-    b_2_factor_score_3 = 0,
-    b_3_factor_score_3 = 0,
-    b_4_factor_score_3 = 0,
-    b_5_factor_score_3 = 0,
-    b_6_factor_score_3 = 0
+    a_1_age_18_29 = 0,
+    a_1_age_45_64 = 0,
+    a_1_age_65plus = 0,
+    a_1_income_50minus = 0,
+    a_1_income_100_149 = 0,
+    a_1_income_150plus = 0,
+    a_1_kids_kids = 0,
+    a_1_education_highschool = 0,
+    a_1_education_graduate = 0,
+    a_1_impedance_20_39 = 0,
+    a_1_impedance_40_59 = 0,
+    a_1_impedance_60plus = 0,
+    a_1_jobtype12_professional = 0,
+    a_1_jobtype12_administrative = 0,
+    a_1_neighborhood_suburban = 0,
+    a_1_neighborhood_town = 0,
+    a_1_homeownership_nonown = 0,
+    a_2_gender_women = 0,
+    a_2_kids_kids = 0,
+    a_2_neighborhood_suburban = 0,
+    a_2_neighborhood_town = 0,
+    a_2_homeownership_nonown = 0,
+    a_3_age_18_29 = 0,
+    a_3_age_45_64 = 0,
+    a_3_age_65plus = 0,
+    a_3_income_50minus = 0,
+    a_3_income_100_149 = 0,
+    a_3_income_150plus = 0,
+    a_3_education_highschool = 0,
+    a_3_education_graduate = 0,
+    a_4_age_18_29 = 0,
+    a_4_age_45_64 = 0,
+    a_4_age_65plus = 0,
+    a_4_jobtype12_professional = 0,
+    a_4_jobtype12_administrative = 0,
+    a_4_neighborhood_suburban = 0,
+    a_4_neighborhood_town = 0,
+    a_4_homeownership_nonown = 0,
+    a_5_age_18_29 = 0,
+    a_5_age_45_64 = 0,
+    a_5_age_65plus = 0,
+    a_5_income_50minus = 0,
+    a_5_income_100_149 = 0,
+    a_5_income_150plus = 0,
+    a_5_education_highschool = 0,
+    a_5_education_graduate = 0,
+    a_5_jobtype12_professional = 0,
+    a_5_jobtype12_administrative = 0,
+    a_5_neighborhood_suburban = 0,
+    a_5_neighborhood_town = 0,
+    l_1_2 = 0,
+    l_1_3 = 0,
+    l_1_4 = 0,
+    l_1_5 = 0,
+    l_1_6 = 0,
+    l_2_2 = 0,
+    l_2_3 = 0,
+    l_2_4 = 0,
+    l_2_5 = 0,
+    l_2_6 = 0,
+    l_3_2 = 0,
+    l_3_3 = 0,
+    l_3_4 = 0,
+    l_3_5 = 0,
+    l_3_6 = 0
   )
 
   assign("apollo_beta", apollo_beta, envir = globalenv())
@@ -170,6 +119,31 @@ exex_mnl_cluster <- function() {
   apollo_fixed <- c()
 
   assign("apollo_fixed", apollo_fixed, envir = globalenv())
+
+  apollo_draws <- list(
+    interDrawsType = "halton",
+    interNDraws = 100,
+    interUnifDraws = c(),
+    interNormDraws = c("n_1", "n_2", "n_3", "n_4", "n_5"),
+    intraDrawsType = "",
+    intraNDraws = 0,
+    intraUnifDraws = c(),
+    intraNormDraws = c()
+  )
+
+  assign("apollo_draws", apollo_draws, envir = globalenv())
+
+  apollo_randCoeff <- function(apollo_beta, apollo_inputs) {
+    randcoeff <- list()
+
+    randcoeff[["L1"]] <- age * a_1_age_18_29
+    randcoeff[["L2"]] <-
+      randcoeff[["L3"]] <-
+      randcoeff[["L4"]] <-
+      randcoeff[["L5"]] <-
+      return(randcoeff)
+  }
+
 
   apollo_inputs <- apollo_validateInputs()
 
@@ -181,6 +155,43 @@ exex_mnl_cluster <- function() {
       on.exit(apollo_detach(apollo_beta, apollo_inputs))
 
       P <- list()
+
+      normalDensity_settings1 <- list(
+        outcomeNormal = attitude_quality,
+        xNormal = zeta_quality * LV,
+        mu = 0,
+        sigma = sigma_qual,
+        rows = (task == 1),
+        componentName = "indic_quality"
+      )
+      normalDensity_settings2 <- list(
+        outcomeNormal = attitude_ingredients,
+        xNormal = zeta_ingredient * LV,
+        mu = 0,
+        sigma = sigma_ingr,
+        rows = (task == 1),
+        componentName = "indic_ingredients"
+      )
+      normalDensity_settings3 <- list(
+        outcomeNormal = attitude_patent,
+        xNormal = zeta_patent * LV,
+        mu = 0,
+        sigma = sigma_pate,
+        rows = (task == 1),
+        componentName = "indic_patent"
+      )
+      normalDensity_settings4 <- list(
+        outcomeNormal = attitude_dominance,
+        xNormal = zeta_dominance * LV,
+        mu = 0,
+        sigma = sigma_domi,
+        rows = (task == 1),
+        componentName = "indic_dominance"
+      )
+      P[["indic_quality"]] <- apollo_normalDensity(normalDensity_settings1, functionality)
+      P[["indic_ingredients"]] <- apollo_normalDensity(normalDensity_settings2, functionality)
+      P[["indic_patent"]] <- apollo_normalDensity(normalDensity_settings3, functionality)
+      P[["indic_dominance"]] <- apollo_normalDensity(normalDensity_settings4, functionality)
 
       V <- list()
       V[["cluster1"]] <- 0

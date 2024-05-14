@@ -141,11 +141,11 @@ export const useCrosstab = (
   );
 
   if (dictionaryElementY.type === "numeric") {
-    table = table.sort((a, b) => Number(a.y) - Number(b.y));
+    table = table.sort((a, b) => (a.y > b.y ? 1 : -1));
   }
 
   if (dictionaryElementX.type === "numeric") {
-    table = table.sort((a, b) => Number(a.x) - Number(b.x));
+    table = table.sort((a, b) => (a.x > b.x ? 1 : -1));
   }
 
   if (dictionaryElementY.type === "haven_labelled") {

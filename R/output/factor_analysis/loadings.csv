@@ -1,15 +1,9 @@
-statement,MR2,MR1,MR3
-I perform better when I interact with colleagues in person on site.,-0.032767787348507244,0.6098324146928887,0.03895286669119252
-Working from home makes me less disciplined/self-controlled.,0.04928852784744375,0.7748815823233964,-0.035080204223535395
-Working from home helps me spend more meaningful time with other members in my household.,0.6511311038920812,0.19317464698339862,0.04307088220087265
-I experience substantial gains in efficiency when working from home.,0.6528293171420994,-0.24798006447280788,0.2183775467884856
-We should raise taxes to provide health insurance for all.,0.21012925190571022,0.27405706910406513,-0.09811303325141014
-Working from home helps me save large costs on commuting and parking.,0.6294429857037988,0.02448722222096004,0.10981218697116087
-I am satisfied with the online shopping and delivery options available to me.,0.225838037535348,0.1034375960543267,-0.4381975029785296
-The quality of interaction during online meetings is disappointing.,-0.011474532604276895,0.4806008149217893,0.10565077092905795
-"Working from home is not practical for me (e.g., due to lack of office devices, distractions from family members).",-0.20575385909336735,0.4743150721931803,0.1078857705166402
-I can efficiently replace some of my business trips with virtual meetings.,0.45305449711888113,0.01681501874595919,-0.15513617395602058
-Videoconferencing enables me to better maintain meaningful contact with friends and family outside of my household.,0.4392684805706381,0.10532001397484725,-0.10028682142001027
-I enjoy not always/everyday having to physically commute to work.,0.5159218970088515,-0.08226377132970279,-0.08743123161800789
-I live on a tighter budget now than before the pandemic.,0.2346914935694941,0.061023650217280734,0.30990913748408316
-I prefer to shop in a store rather than online.,0.02581536892795311,0.19004158858503442,0.42199949310853074
+statement,MR1,MR3,MR2,MR4
+I perform better when I interact with colleagues in person on site.,0.5778499539920282,7.609769207972128e-4,0.02789284685850905,-0.03439405896730657
+Working from home makes me less disciplined/self-controlled.,0.7964373166332837,-0.03804796663274408,0.005035909500616255,0.17011508403769826
+Working from home helps me spend more meaningful time with other members in my household.,0.07795332155082631,0.17611085984978664,0.021978994425692407,0.4152429332213988
+I experience substantial gains in efficiency when working from home.,-0.016418789573212116,0.9769333365233674,-0.007603129757179496,0.015043076026377278
+We should raise taxes to provide health insurance for all.,-0.007908437961545216,-0.09884944015912517,-0.04520810960396229,0.42915063690891475
+Working from home helps me save large costs on commuting and parking.,-0.0026913449529971847,-0.007777514310788082,0.9947953213508974,-0.008049935478889686
+I am satisfied with the online shopping and delivery options available to me.,0.5767448606400349,0.012702391570069138,-0.03686827287640222,-0.19900922396339304
+The quality of interaction during online meetings is disappointing.,-0.15840065877557538,-0.04581502707391227,0.006778650693387345,0.45961829009621274

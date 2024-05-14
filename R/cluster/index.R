@@ -1,44 +1,64 @@
 hc <- hclust(
   data %>%
     select(
-      row_index,
-      age,
-      gender,
-      income,
-      kids,
-      education12,
-      impedance,
-      jobtype12,
-      commute,
-      neighborhood,
-      homeownership,
-      factor_1,
-      factor_2,
-      factor_3,
+      share_main_1,
+      share_main_2,
+      share_main_3
     ) %>%
     dist()
 )
 
 memb <- cutree(hc, k = 6)
 
-plot(hc)
+png(
+  filename = file.path(
+    "output",
+    "cluster",
+    "dendrogram.png"
+  ),
+  width = 8,
+  height = 4.5,
+  units = "in",
+  res = 300
+)
+plot(
+  as.dendrogram(hc),
+  leaflab = "none",
+  xlab = "Responses",
+  ylab = "Height"
+)
+dev.off()
+
+png(
+  filename = file.path(
+    "output",
+    "cluster",
+    "dendrogram_2.png"
+  ),
+  width = 8,
+  height = 4.5,
+  units = "in",
+  res = 300
+)
+plot(
+  as.dendrogram(hc),
+  leaflab = "none",
+  xlab = "Responses",
+  ylab = "Height",
+  ylim = c(0.5, 1.5)
+)
+dev.off()
+
 
 set.seed(100)
 
 km <- kmeans(
   data %>%
     select(
-      days_main_1,
-      days_main_2,
-      days_main_3
-    ) %>%
-    mutate(
-      days_total = days_main_1 + days_main_2 + days_main_3,
-      days_main_1 = days_main_1 / days_total,
-      days_main_2 = days_main_2 / days_total,
-      days_main_3 = days_main_3 / days_total
-    ) %>%
-    select(-days_total),
+      share_main_1,
+      share_main_2,
+      share_main_3
+    ),
   6,
   iter.max = 1000
 )
@@ -46,14 +66,33 @@ km <- kmeans(
 data <- data %>%
   mutate(cluster = km$cluster) %>%
   mutate(
-    cluster =
-      rows[cluster]
+    cluster = case_when(
+      cluster == 1 ~ 1,
+      cluster == 2 ~ 4,
+      cluster == 3 ~ 2,
+      cluster == 4 ~ 6,
+      cluster == 5 ~ 3,
+      cluster == 6 ~ 5
+    )
+  ) %>%
+  mutate(
+    cluster = labelled(
+      cluster,
+      c(
+        "Primary" = 1,
+        "Temporary" = 2,
+        "Home" = 3,
+        "Primary_Home" = 4,
+        "Temporary_Home" = 5,
+        "All_Mixed" = 6
+      )
+    )
   )
 
 center_table <- km$centers %>%
   round(3)
 
-center_table_rows <- c("Primary", "Primary_Home", "Temporary", "All_Mixed", "Home", "Temporary_Home")
+center_table_rows <- c("Primary", "Temporary", "Home", "Primary_Home", "Temporary_Home", "All_Mixed")
 center_table_cols <- c("Primary", "Temporary", "Home")
 
 rownames(center_table) <- center_table_rows
