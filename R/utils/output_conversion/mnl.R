@@ -176,7 +176,7 @@ for (i in 1:length(names)) {
       path = file.path(
         "output",
         "mnl",
-        str_replace(names[i], "model.rds", "estimates.html")
+        str_replace(names[i], "model.rds", "html")
       )
     )
 }

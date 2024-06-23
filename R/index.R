@@ -15,7 +15,7 @@ source(file.path("utils", "data_export", "index.R"))
 
 # source(file.path("mdcev", "model_10", "index.R"))
 # source(file.path("mdcev", "model_11", "index.R"))
-source(file.path("mdcev", "model_12", "index.R"))
-source(file.path("mdcev", "model_13", "index.R"))
+# source(file.path("mdcev", "model_12", "index.R"))
+# source(file.path("mdcev", "model_13", "index.R"))
 
-source(file.path("utils", "output_conversion", "index.R"))
+# source(file.path("utils", "output_conversion", "index.R"))

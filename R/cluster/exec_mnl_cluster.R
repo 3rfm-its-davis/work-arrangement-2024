@@ -1,4 +1,4 @@
-exec_mnl_cluster <- function() {
+exec_mnl_model_1 <- function() {
   database <- get("data", envir = globalenv()) %>%
     select(
       row_index,
@@ -9,12 +9,11 @@ exec_mnl_cluster <- function() {
       education12,
       impedance,
       jobtype12,
-      commute,
       neighborhood,
       homeownership,
-      factor_1,
-      factor_2,
-      factor_3,
+      factor_c_1,
+      factor_c_2,
+      factor_c_3,
       cluster
     ) %>%
     mutate_if(
@@ -148,21 +147,21 @@ exec_mnl_cluster <- function() {
     b_4_homeownership_nonown = 0,
     b_5_homeownership_nonown = 0,
     b_6_homeownership_nonown = 0,
-    b_2_factor_score_1 = 0,
-    b_3_factor_score_1 = 0,
-    b_4_factor_score_1 = 0,
-    b_5_factor_score_1 = 0,
-    b_6_factor_score_1 = 0,
-    b_2_factor_score_2 = 0,
-    b_3_factor_score_2 = 0,
-    b_4_factor_score_2 = 0,
-    b_5_factor_score_2 = 0,
-    b_6_factor_score_2 = 0,
-    b_2_factor_score_3 = 0,
-    b_3_factor_score_3 = 0,
-    b_4_factor_score_3 = 0,
-    b_5_factor_score_3 = 0,
-    b_6_factor_score_3 = 0
+    b_2_factor_c_score_1 = 0,
+    b_3_factor_c_score_1 = 0,
+    b_4_factor_c_score_1 = 0,
+    b_5_factor_c_score_1 = 0,
+    b_6_factor_c_score_1 = 0,
+    b_2_factor_c_score_2 = 0,
+    b_3_factor_c_score_2 = 0,
+    b_4_factor_c_score_2 = 0,
+    b_5_factor_c_score_2 = 0,
+    b_6_factor_c_score_2 = 0,
+    b_2_factor_c_score_3 = 0,
+    b_3_factor_c_score_3 = 0,
+    b_4_factor_c_score_3 = 0,
+    b_5_factor_c_score_3 = 0,
+    b_6_factor_c_score_3 = 0
   )
 
   assign("apollo_beta", apollo_beta, envir = globalenv())
@@ -204,9 +203,9 @@ exec_mnl_cluster <- function() {
         b_2_jobtype12_professional * (jobtype12 == 2) +
         b_2_jobtype12_administrative * (jobtype12 == 3) +
         b_2_homeownership_nonown * (homeownership == 1) +
-        b_2_factor_score_1 * factor_1 +
-        b_2_factor_score_2 * factor_2 +
-        b_2_factor_score_3 * factor_3
+        b_2_factor_c_score_1 * factor_c_1 +
+        b_2_factor_c_score_2 * factor_c_2 +
+        b_2_factor_c_score_3 * factor_c_3
       V[["cluster3"]] <- asc_3 +
         b_3_age_18_29 * (age == 1) +
         b_3_age_45_64 * (age == 3) +
@@ -227,9 +226,9 @@ exec_mnl_cluster <- function() {
         b_3_jobtype12_professional * (jobtype12 == 2) +
         b_3_jobtype12_administrative * (jobtype12 == 3) +
         b_3_homeownership_nonown * (homeownership == 1) +
-        b_3_factor_score_1 * factor_1 +
-        b_3_factor_score_2 * factor_2 +
-        b_3_factor_score_3 * factor_3
+        b_3_factor_c_score_1 * factor_c_1 +
+        b_3_factor_c_score_2 * factor_c_2 +
+        b_3_factor_c_score_3 * factor_c_3
       V[["cluster4"]] <- asc_4 +
         b_4_age_18_29 * (age == 1) +
         b_4_age_45_64 * (age == 3) +
@@ -250,9 +249,9 @@ exec_mnl_cluster <- function() {
         b_4_jobtype12_professional * (jobtype12 == 2) +
         b_4_jobtype12_administrative * (jobtype12 == 3) +
         b_4_homeownership_nonown * (homeownership == 1) +
-        b_4_factor_score_1 * factor_1 +
-        b_4_factor_score_2 * factor_2 +
-        b_4_factor_score_3 * factor_3
+        b_4_factor_c_score_1 * factor_c_1 +
+        b_4_factor_c_score_2 * factor_c_2 +
+        b_4_factor_c_score_3 * factor_c_3
       V[["cluster5"]] <- asc_5 +
         b_5_age_18_29 * (age == 1) +
         b_5_age_45_64 * (age == 3) +
@@ -273,9 +272,9 @@ exec_mnl_cluster <- function() {
         b_5_jobtype12_professional * (jobtype12 == 2) +
         b_5_jobtype12_administrative * (jobtype12 == 3) +
         b_5_homeownership_nonown * (homeownership == 1) +
-        b_5_factor_score_1 * factor_1 +
-        b_5_factor_score_2 * factor_2 +
-        b_5_factor_score_3 * factor_3
+        b_5_factor_c_score_1 * factor_c_1 +
+        b_5_factor_c_score_2 * factor_c_2 +
+        b_5_factor_c_score_3 * factor_c_3
       V[["cluster6"]] <- asc_6 +
         b_6_age_18_29 * (age == 1) +
         b_6_age_45_64 * (age == 3) +
@@ -296,18 +295,18 @@ exec_mnl_cluster <- function() {
         b_6_jobtype12_professional * (jobtype12 == 2) +
         b_6_jobtype12_administrative * (jobtype12 == 3) +
         b_6_homeownership_nonown * (homeownership == 1) +
-        b_6_factor_score_1 * factor_1 +
-        b_6_factor_score_2 * factor_2 +
-        b_6_factor_score_3 * factor_3
+        b_6_factor_c_score_1 * factor_c_1 +
+        b_6_factor_c_score_2 * factor_c_2 +
+        b_6_factor_c_score_3 * factor_c_3
 
       mnl_settings <- list(
         alternatives = c(
-          cluster1 = "Primary",
-          cluster2 = "Temporary",
-          cluster3 = "Home",
-          cluster4 = "Primary_Home",
-          cluster5 = "Temporary_Home",
-          cluster6 = "All_Mixed"
+          cluster1 = 1,
+          cluster2 = 2,
+          cluster3 = 3,
+          cluster4 = 4,
+          cluster5 = 5,
+          cluster6 = 6
         ),
         avail = list(
           cluster1 = 1,
@@ -348,5 +347,5 @@ exec_mnl_cluster <- function() {
   # apollo_sink()
 }
 
-exex_mnl_cluster()
+exec_mnl_model_1()
 apollo_sink()

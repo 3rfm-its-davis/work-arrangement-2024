@@ -1,4 +1,28 @@
 data <- data %>%
+  filter(
+    days_total > 3
+  )
+print(nrow(data))
+
+data <- data %>%
+  filter(
+    hours_total >= 15
+  )
+print(nrow(data))
+
+data <- data %>%
+  filter(
+    C3_1 <= naive_total * 1.5 + 5
+  )
+print(nrow(data))
+
+data <- data %>%
+  filter(
+    C3_1 >= naive_total / 1.5 - 5
+  )
+print(nrow(data))
+
+data <- data %>%
   mutate(
     ratio_total = case_when(hours_total == 0 ~ 0, T ~ (
       naive_total / hours_total
@@ -18,7 +42,7 @@ data <- data %>%
     diff_day_6 = C13a_6_4 - hours_day_6,
     diff_day_7 = C13a_7_4 - hours_day_7,
   ) %>%
-  filter(ratio_total >= 0.75 & ratio_total <= 1.33)
+  filter(ratio_total >= 0.5 & ratio_total <= 2.00)
 
 print(nrow(data))
 

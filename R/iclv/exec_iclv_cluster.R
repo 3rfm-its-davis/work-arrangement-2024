@@ -1,4 +1,4 @@
-exec_mnl_cluster <- function() {
+exec_iclv_cluster <- function() {
   database <- get("data", envir = globalenv()) %>%
     select(
       row_index,
@@ -12,9 +12,29 @@ exec_mnl_cluster <- function() {
       commute,
       neighborhood,
       homeownership,
-      factor_1,
-      factor_2,
-      factor_3,
+      att_01 = A_a,
+      att_02 = A_b,
+      att_03 = A_c,
+      att_04 = A_d,
+      att_05 = A_e,
+      att_06 = A_f,
+      att_07 = A_g,
+      att_08 = A_h,
+      att_09 = A_k,
+      att_10 = A_l,
+      att_11 = A_n,
+      att_12 = A_p,
+      att_13 = A_q,
+      att_14 = A_r,
+      att_15 = A_s,
+      att_16 = A_u,
+      att_17 = A_w,
+      att_18 = A_x,
+      att_19 = A_y,
+      att_20 = A_z,
+      att_21 = A_ab,
+      att_22 = A_ac,
+      att_23 = A_ad,
       cluster
     ) %>%
     mutate_if(
@@ -29,89 +49,94 @@ exec_mnl_cluster <- function() {
   apollo_initialise()
 
   apollo_control <- list(
-    modelName       = model_name,
-    modelDescr      = "
+    modelName = model_name,
+    modelDescr = "
   I.V.
-  - Age x Gender x Kids
-  - Income
-  - Education (3-level)
-  - Travel impedance x Gender
-  - Job type (3-level)
-  - Primary commute mode
-  - Neighborhood type
-  - Home ownership",
-    indivID         = "row_index",
-    outputDirectory = file.path("output", "iclv")
+  - Age",
+    indivID = "row_index",
+    outputDirectory = file.path("output", "iclv"),
+    nCores = 16
   )
 
   assign("apollo_control", apollo_control, envir = globalenv())
 
   apollo_beta <- c(
-    a_1_age_18_29 = 0,
-    a_1_age_45_64 = 0,
-    a_1_age_65plus = 0,
-    a_1_income_50minus = 0,
-    a_1_income_100_149 = 0,
-    a_1_income_150plus = 0,
-    a_1_kids_kids = 0,
-    a_1_education_highschool = 0,
-    a_1_education_graduate = 0,
-    a_1_impedance_20_39 = 0,
-    a_1_impedance_40_59 = 0,
-    a_1_impedance_60plus = 0,
-    a_1_jobtype12_professional = 0,
-    a_1_jobtype12_administrative = 0,
-    a_1_neighborhood_suburban = 0,
-    a_1_neighborhood_town = 0,
-    a_1_homeownership_nonown = 0,
-    a_2_gender_women = 0,
-    a_2_kids_kids = 0,
-    a_2_neighborhood_suburban = 0,
-    a_2_neighborhood_town = 0,
-    a_2_homeownership_nonown = 0,
-    a_3_age_18_29 = 0,
-    a_3_age_45_64 = 0,
-    a_3_age_65plus = 0,
-    a_3_income_50minus = 0,
-    a_3_income_100_149 = 0,
-    a_3_income_150plus = 0,
-    a_3_education_highschool = 0,
-    a_3_education_graduate = 0,
-    a_4_age_18_29 = 0,
-    a_4_age_45_64 = 0,
-    a_4_age_65plus = 0,
-    a_4_jobtype12_professional = 0,
-    a_4_jobtype12_administrative = 0,
-    a_4_neighborhood_suburban = 0,
-    a_4_neighborhood_town = 0,
-    a_4_homeownership_nonown = 0,
-    a_5_age_18_29 = 0,
-    a_5_age_45_64 = 0,
-    a_5_age_65plus = 0,
-    a_5_income_50minus = 0,
-    a_5_income_100_149 = 0,
-    a_5_income_150plus = 0,
-    a_5_education_highschool = 0,
-    a_5_education_graduate = 0,
-    a_5_jobtype12_professional = 0,
-    a_5_jobtype12_administrative = 0,
-    a_5_neighborhood_suburban = 0,
-    a_5_neighborhood_town = 0,
-    l_1_2 = 0,
-    l_1_3 = 0,
-    l_1_4 = 0,
-    l_1_5 = 0,
-    l_1_6 = 0,
+    asc_2 = 0,
+    asc_3 = 0,
+    asc_4 = 0,
+    asc_5 = 0,
+    asc_6 = 0,
+    l_2_1 = 0,
     l_2_2 = 0,
     l_2_3 = 0,
     l_2_4 = 0,
     l_2_5 = 0,
-    l_2_6 = 0,
+    l_3_1 = 0,
     l_3_2 = 0,
     l_3_3 = 0,
     l_3_4 = 0,
     l_3_5 = 0,
-    l_3_6 = 0
+    l_4_1 = 0,
+    l_4_2 = 0,
+    l_4_3 = 0,
+    l_4_4 = 0,
+    l_4_5 = 0,
+    l_5_1 = 0,
+    l_5_2 = 0,
+    l_5_3 = 0,
+    l_5_4 = 0,
+    l_5_5 = 0,
+    l_6_1 = 0,
+    l_6_2 = 0,
+    l_6_3 = 0,
+    l_6_4 = 0,
+    l_6_5 = 0,
+    d_01_2 = 1,
+    d_02_4 = 1,
+    d_03_3 = 1,
+    d_04_1 = 1,
+    d_05_3 = 1,
+    d_06_5 = 1,
+    d_07_1 = 1,
+    d_08_3 = 1,
+    d_09_1 = 1,
+    d_10_3 = 1,
+    d_11_1 = 1,
+    d_12_1 = 1,
+    d_13_4 = 1,
+    d_14_1 = 1,
+    d_15_2 = 1,
+    d_16_1 = 1,
+    d_17_2 = 1,
+    d_18_2 = 1,
+    d_19_2 = 1,
+    d_20_5 = 1,
+    d_21_3 = 1,
+    d_22_1 = 1,
+    d_23_3 = 1,
+    s_01_2 = 1,
+    s_02_4 = 1,
+    s_03_3 = 1,
+    s_04_1 = 1,
+    s_05_3 = 1,
+    s_06_5 = 1,
+    s_07_1 = 1,
+    s_08_3 = 1,
+    s_09_1 = 1,
+    s_10_3 = 1,
+    s_11_1 = 1,
+    s_12_1 = 1,
+    s_13_4 = 1,
+    s_14_1 = 1,
+    s_15_2 = 1,
+    s_16_1 = 1,
+    s_17_2 = 1,
+    s_18_2 = 1,
+    s_19_2 = 1,
+    s_20_5 = 1,
+    s_21_3 = 1,
+    s_22_1 = 1,
+    s_23_3 = 1
   )
 
   assign("apollo_beta", apollo_beta, envir = globalenv())
@@ -136,14 +161,15 @@ exec_mnl_cluster <- function() {
   apollo_randCoeff <- function(apollo_beta, apollo_inputs) {
     randcoeff <- list()
 
-    randcoeff[["L1"]] <- age * a_1_age_18_29
-    randcoeff[["L2"]] <-
-      randcoeff[["L3"]] <-
-      randcoeff[["L4"]] <-
-      randcoeff[["L5"]] <-
-      return(randcoeff)
+    randcoeff[["lv_1"]] <- n_1
+    randcoeff[["lv_2"]] <- n_2
+    randcoeff[["lv_3"]] <- n_3
+    randcoeff[["lv_4"]] <- n_4
+    randcoeff[["lv_5"]] <- n_5
+    return(randcoeff)
   }
 
+  assign("apollo_randCoeff", apollo_randCoeff, envir = globalenv())
 
   apollo_inputs <- apollo_validateInputs()
 
@@ -156,185 +182,107 @@ exec_mnl_cluster <- function() {
 
       P <- list()
 
-      normalDensity_settings1 <- list(
-        outcomeNormal = attitude_quality,
-        xNormal = zeta_quality * LV,
-        mu = 0,
-        sigma = sigma_qual,
-        rows = (task == 1),
-        componentName = "indic_quality"
-      )
-      normalDensity_settings2 <- list(
-        outcomeNormal = attitude_ingredients,
-        xNormal = zeta_ingredient * LV,
-        mu = 0,
-        sigma = sigma_ingr,
-        rows = (task == 1),
-        componentName = "indic_ingredients"
-      )
-      normalDensity_settings3 <- list(
-        outcomeNormal = attitude_patent,
-        xNormal = zeta_patent * LV,
-        mu = 0,
-        sigma = sigma_pate,
-        rows = (task == 1),
-        componentName = "indic_patent"
-      )
-      normalDensity_settings4 <- list(
-        outcomeNormal = attitude_dominance,
-        xNormal = zeta_dominance * LV,
-        mu = 0,
-        sigma = sigma_domi,
-        rows = (task == 1),
-        componentName = "indic_dominance"
-      )
-      P[["indic_quality"]] <- apollo_normalDensity(normalDensity_settings1, functionality)
-      P[["indic_ingredients"]] <- apollo_normalDensity(normalDensity_settings2, functionality)
-      P[["indic_patent"]] <- apollo_normalDensity(normalDensity_settings3, functionality)
-      P[["indic_dominance"]] <- apollo_normalDensity(normalDensity_settings4, functionality)
+      normalDensity_settings01 <- list(outcomeNormal = att_01, xNormal = d_01_2 * lv_2, mu = 0, sigma = s_01_2)
+      normalDensity_settings02 <- list(outcomeNormal = att_02, xNormal = d_02_4 * lv_4, mu = 0, sigma = s_02_4)
+      normalDensity_settings03 <- list(outcomeNormal = att_03, xNormal = d_03_3 * lv_3, mu = 0, sigma = s_03_3)
+      normalDensity_settings04 <- list(outcomeNormal = att_04, xNormal = d_04_1 * lv_1, mu = 0, sigma = s_04_1)
+      normalDensity_settings05 <- list(outcomeNormal = att_05, xNormal = d_05_3 * lv_3, mu = 0, sigma = s_05_3)
+      normalDensity_settings06 <- list(outcomeNormal = att_06, xNormal = d_06_5 * lv_5, mu = 0, sigma = s_06_5)
+      normalDensity_settings07 <- list(outcomeNormal = att_07, xNormal = d_07_1 * lv_1, mu = 0, sigma = s_07_1)
+      normalDensity_settings08 <- list(outcomeNormal = att_08, xNormal = d_08_3 * lv_3, mu = 0, sigma = s_08_3)
+      normalDensity_settings09 <- list(outcomeNormal = att_09, xNormal = d_09_1 * lv_1, mu = 0, sigma = s_09_1)
+      normalDensity_settings10 <- list(outcomeNormal = att_10, xNormal = d_10_3 * lv_3, mu = 0, sigma = s_10_3)
+      normalDensity_settings11 <- list(outcomeNormal = att_11, xNormal = d_11_1 * lv_1, mu = 0, sigma = s_11_1)
+      normalDensity_settings12 <- list(outcomeNormal = att_12, xNormal = d_12_1 * lv_1, mu = 0, sigma = s_12_1)
+      normalDensity_settings13 <- list(outcomeNormal = att_13, xNormal = d_13_4 * lv_4, mu = 0, sigma = s_13_4)
+      normalDensity_settings14 <- list(outcomeNormal = att_14, xNormal = d_14_1 * lv_1, mu = 0, sigma = s_14_1)
+      normalDensity_settings15 <- list(outcomeNormal = att_15, xNormal = d_15_2 * lv_2, mu = 0, sigma = s_15_2)
+      normalDensity_settings16 <- list(outcomeNormal = att_16, xNormal = d_16_1 * lv_1, mu = 0, sigma = s_16_1)
+      normalDensity_settings17 <- list(outcomeNormal = att_17, xNormal = d_17_2 * lv_2, mu = 0, sigma = s_17_2)
+      normalDensity_settings18 <- list(outcomeNormal = att_18, xNormal = d_18_2 * lv_2, mu = 0, sigma = s_18_2)
+      normalDensity_settings19 <- list(outcomeNormal = att_19, xNormal = d_19_2 * lv_2, mu = 0, sigma = s_19_2)
+      normalDensity_settings20 <- list(outcomeNormal = att_20, xNormal = d_20_5 * lv_5, mu = 0, sigma = s_20_5)
+      normalDensity_settings21 <- list(outcomeNormal = att_21, xNormal = d_21_3 * lv_3, mu = 0, sigma = s_21_3)
+      normalDensity_settings22 <- list(outcomeNormal = att_22, xNormal = d_22_1 * lv_1, mu = 0, sigma = s_22_1)
+      normalDensity_settings23 <- list(outcomeNormal = att_23, xNormal = d_23_3 * lv_3, mu = 0, sigma = s_23_3)
+
+      P[["att_01"]] <- apollo_normalDensity(normalDensity_settings01, functionality)
+      P[["att_02"]] <- apollo_normalDensity(normalDensity_settings02, functionality)
+      P[["att_03"]] <- apollo_normalDensity(normalDensity_settings03, functionality)
+      P[["att_04"]] <- apollo_normalDensity(normalDensity_settings04, functionality)
+      P[["att_05"]] <- apollo_normalDensity(normalDensity_settings05, functionality)
+      P[["att_06"]] <- apollo_normalDensity(normalDensity_settings06, functionality)
+      P[["att_07"]] <- apollo_normalDensity(normalDensity_settings07, functionality)
+      P[["att_08"]] <- apollo_normalDensity(normalDensity_settings08, functionality)
+      P[["att_09"]] <- apollo_normalDensity(normalDensity_settings09, functionality)
+      P[["att_10"]] <- apollo_normalDensity(normalDensity_settings10, functionality)
+      P[["att_11"]] <- apollo_normalDensity(normalDensity_settings11, functionality)
+      P[["att_12"]] <- apollo_normalDensity(normalDensity_settings12, functionality)
+      P[["att_13"]] <- apollo_normalDensity(normalDensity_settings13, functionality)
+      P[["att_14"]] <- apollo_normalDensity(normalDensity_settings14, functionality)
+      P[["att_15"]] <- apollo_normalDensity(normalDensity_settings15, functionality)
+      P[["att_16"]] <- apollo_normalDensity(normalDensity_settings16, functionality)
+      P[["att_17"]] <- apollo_normalDensity(normalDensity_settings17, functionality)
+      P[["att_18"]] <- apollo_normalDensity(normalDensity_settings18, functionality)
+      P[["att_19"]] <- apollo_normalDensity(normalDensity_settings19, functionality)
+      P[["att_20"]] <- apollo_normalDensity(normalDensity_settings20, functionality)
+      P[["att_21"]] <- apollo_normalDensity(normalDensity_settings21, functionality)
+      P[["att_22"]] <- apollo_normalDensity(normalDensity_settings22, functionality)
+      P[["att_23"]] <- apollo_normalDensity(normalDensity_settings23, functionality)
 
       V <- list()
       V[["cluster1"]] <- 0
       V[["cluster2"]] <- asc_2 +
-        b_2_age_18_29 * (age == 1) +
-        b_2_age_45_64 * (age == 3) +
-        b_2_age_65plus * (age == 4) +
-        b_2_gender_women * (gender == 1) +
-        b_2_kids_kids * (kids == 1) +
-        b_2_genderkids_women_kids * (gender == 1 & kids == 1) +
-        b_2_income_50minus * (income == 1) +
-        b_2_income_100_149 * (income == 3) +
-        b_2_income_150plus * (income == 4) +
-        b_2_education_highschool * (education12 == 1) +
-        b_2_education_graduate * (education12 == 3) +
-        b_2_impedance_20_39 * (impedance == 2) +
-        b_2_impedance_40_59 * (impedance == 3) +
-        b_2_impedance_60plus * (impedance == 4) +
-        b_2_neighborhood_suburban * (neighborhood == 2) +
-        b_2_neighborhood_town * (neighborhood == 3) +
-        b_2_jobtype12_professional * (jobtype12 == 2) +
-        b_2_jobtype12_administrative * (jobtype12 == 3) +
-        b_2_homeownership_nonown * (homeownership == 1) +
-        b_2_factor_score_1 * factor_1 +
-        b_2_factor_score_2 * factor_2 +
-        b_2_factor_score_3 * factor_3
+        l_2_1 * lv_1 +
+        l_2_2 * lv_2 +
+        l_2_3 * lv_3 +
+        l_2_4 * lv_4 +
+        l_2_5 * lv_5
       V[["cluster3"]] <- asc_3 +
-        b_3_age_18_29 * (age == 1) +
-        b_3_age_45_64 * (age == 3) +
-        b_3_age_65plus * (age == 4) +
-        b_3_gender_women * (gender == 1) +
-        b_3_kids_kids * (kids == 1) +
-        b_3_genderkids_women_kids * (gender == 1 & kids == 1) +
-        b_3_income_50minus * (income == 1) +
-        b_3_income_100_149 * (income == 3) +
-        b_3_income_150plus * (income == 4) +
-        b_3_education_highschool * (education12 == 1) +
-        b_3_education_graduate * (education12 == 3) +
-        b_3_impedance_20_39 * (impedance == 2) +
-        b_3_impedance_40_59 * (impedance == 3) +
-        b_3_impedance_60plus * (impedance == 4) +
-        b_3_neighborhood_suburban * (neighborhood == 2) +
-        b_3_neighborhood_town * (neighborhood == 3) +
-        b_3_jobtype12_professional * (jobtype12 == 2) +
-        b_3_jobtype12_administrative * (jobtype12 == 3) +
-        b_3_homeownership_nonown * (homeownership == 1) +
-        b_3_factor_score_1 * factor_1 +
-        b_3_factor_score_2 * factor_2 +
-        b_3_factor_score_3 * factor_3
+        l_3_1 * lv_1 +
+        l_3_2 * lv_2 +
+        l_3_3 * lv_3 +
+        l_3_4 * lv_4 +
+        l_3_5 * lv_5
       V[["cluster4"]] <- asc_4 +
-        b_4_age_18_29 * (age == 1) +
-        b_4_age_45_64 * (age == 3) +
-        b_4_age_65plus * (age == 4) +
-        b_4_gender_women * (gender == 1) +
-        b_4_kids_kids * (kids == 1) +
-        b_4_genderkids_women_kids * (gender == 1 & kids == 1) +
-        b_4_income_50minus * (income == 1) +
-        b_4_income_100_149 * (income == 3) +
-        b_4_income_150plus * (income == 4) +
-        b_4_education_highschool * (education12 == 1) +
-        b_4_education_graduate * (education12 == 3) +
-        b_4_impedance_20_39 * (impedance == 2) +
-        b_4_impedance_40_59 * (impedance == 3) +
-        b_4_impedance_60plus * (impedance == 4) +
-        b_4_neighborhood_suburban * (neighborhood == 2) +
-        b_4_neighborhood_town * (neighborhood == 3) +
-        b_4_jobtype12_professional * (jobtype12 == 2) +
-        b_4_jobtype12_administrative * (jobtype12 == 3) +
-        b_4_homeownership_nonown * (homeownership == 1) +
-        b_4_factor_score_1 * factor_1 +
-        b_4_factor_score_2 * factor_2 +
-        b_4_factor_score_3 * factor_3
+        l_4_1 * lv_1 +
+        l_4_2 * lv_2 +
+        l_4_3 * lv_3 +
+        l_4_4 * lv_4 +
+        l_4_5 * lv_5
       V[["cluster5"]] <- asc_5 +
-        b_5_age_18_29 * (age == 1) +
-        b_5_age_45_64 * (age == 3) +
-        b_5_age_65plus * (age == 4) +
-        b_5_gender_women * (gender == 1) +
-        b_5_kids_kids * (kids == 1) +
-        b_5_genderkids_women_kids * (gender == 1 & kids == 1) +
-        b_5_income_50minus * (income == 1) +
-        b_5_income_100_149 * (income == 3) +
-        b_5_income_150plus * (income == 4) +
-        b_5_education_highschool * (education12 == 1) +
-        b_5_education_graduate * (education12 == 3) +
-        b_5_impedance_20_39 * (impedance == 2) +
-        b_5_impedance_40_59 * (impedance == 3) +
-        b_5_impedance_60plus * (impedance == 4) +
-        b_5_neighborhood_suburban * (neighborhood == 2) +
-        b_5_neighborhood_town * (neighborhood == 3) +
-        b_5_jobtype12_professional * (jobtype12 == 2) +
-        b_5_jobtype12_administrative * (jobtype12 == 3) +
-        b_5_homeownership_nonown * (homeownership == 1) +
-        b_5_factor_score_1 * factor_1 +
-        b_5_factor_score_2 * factor_2 +
-        b_5_factor_score_3 * factor_3
+        l_5_1 * lv_1 +
+        l_5_2 * lv_2 +
+        l_5_3 * lv_3 +
+        l_5_4 * lv_4 +
+        l_5_5 * lv_5
       V[["cluster6"]] <- asc_6 +
-        b_6_age_18_29 * (age == 1) +
-        b_6_age_45_64 * (age == 3) +
-        b_6_age_65plus * (age == 4) +
-        b_6_gender_women * (gender == 1) +
-        b_6_kids_kids * (kids == 1) +
-        b_6_genderkids_women_kids * (gender == 1 & kids == 1) +
-        b_6_income_50minus * (income == 1) +
-        b_6_income_100_149 * (income == 3) +
-        b_6_income_150plus * (income == 4) +
-        b_6_education_highschool * (education12 == 1) +
-        b_6_education_graduate * (education12 == 3) +
-        b_6_impedance_20_39 * (impedance == 2) +
-        b_6_impedance_40_59 * (impedance == 3) +
-        b_6_impedance_60plus * (impedance == 4) +
-        b_6_neighborhood_suburban * (neighborhood == 2) +
-        b_6_neighborhood_town * (neighborhood == 3) +
-        b_6_jobtype12_professional * (jobtype12 == 2) +
-        b_6_jobtype12_administrative * (jobtype12 == 3) +
-        b_6_homeownership_nonown * (homeownership == 1) +
-        b_6_factor_score_1 * factor_1 +
-        b_6_factor_score_2 * factor_2 +
-        b_6_factor_score_3 * factor_3
+        l_6_1 * lv_1 +
+        l_6_2 * lv_2 +
+        l_6_3 * lv_3 +
+        l_6_4 * lv_4 +
+        l_6_5 * lv_5
 
       mnl_settings <- list(
         alternatives = c(
-          cluster1 = "Primary",
-          cluster2 = "Temporary",
-          cluster3 = "Home",
-          cluster4 = "Primary_Home",
-          cluster5 = "Temporary_Home",
-          cluster6 = "All_Mixed"
-        ),
-        avail = list(
           cluster1 = 1,
-          cluster2 = 1,
-          cluster3 = 1,
-          cluster4 = 1,
-          cluster5 = 1,
-          cluster6 = 1
+          cluster2 = 2,
+          cluster3 = 3,
+          cluster4 = 4,
+          cluster5 = 5,
+          cluster6 = 6
         ),
+        avail = 1,
         choiceVar = cluster,
         utilities = V
       )
 
-      P[["model"]] <- apollo_mnl(mnl_settings, functionality)
+      P[["choice"]] <- apollo_mnl(mnl_settings, functionality)
 
+      P <- apollo_combineModels(P, apollo_inputs, functionality)
+      P <- apollo_avgInterDraws(P, apollo_inputs, functionality)
       P <- apollo_prepareProb(P, apollo_inputs, functionality)
+
       return(P)
     }
 
@@ -359,5 +307,5 @@ exec_mnl_cluster <- function() {
   # apollo_sink()
 }
 
-exex_mnl_cluster()
+exec_iclv_cluster()
 apollo_sink()

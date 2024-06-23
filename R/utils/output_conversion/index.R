@@ -30,7 +30,10 @@ header_label_map <- c(
     "3" = "Home",
     "4" = "Primary_Home",
     "5" = "Temporary_Home",
-    "6" = "All_Mixed"
+    "6" = "All_Mixed",
+    "prho" = "Primary_Home",
+    "tmho" = "Temporary_Home",
+    "allm" = "All_Mixed"
   )
 
 main_label_map <- c(
@@ -86,9 +89,9 @@ agk_label_map <- c(
 )
 
 factor_label_map <- c(
-  "score_1" = "In-person communication is important for work",
-  "score_2" = "Remote work is beneficial to me",
-  "score_3" = "I prefer shop local than online"
+  "c_score_1" = "In-person communication is important for work",
+  "c_score_2" = "Remote work is beneficial to me",
+  "c_score_3" = "I prefer shop local than online"
 )
 
 age_label_map <- c(
@@ -227,5 +230,5 @@ homeownership_label_map <- c(
   nonown = "Non-Own"
 )
 
-source(file.path("utils", "output_conversion", "model_12.R"))
-source(file.path("utils", "output_conversion", "model_13.R"))
+# source(file.path("utils", "output_conversion", "model_12.R"))
+# source(file.path("utils", "output_conversion", "model_13.R"))

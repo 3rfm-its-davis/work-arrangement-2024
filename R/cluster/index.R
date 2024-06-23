@@ -63,17 +63,28 @@ km <- kmeans(
   iter.max = 1000
 )
 
+forward_mapper <- c(
+  2,
+  4,
+  1,
+  6,
+  3,
+  5
+)
+
+reverse_mapper <- c(
+  3,
+  1,
+  5,
+  2,
+  6,
+  4
+)
+
 data <- data %>%
   mutate(cluster = km$cluster) %>%
   mutate(
-    cluster = case_when(
-      cluster == 1 ~ 1,
-      cluster == 2 ~ 4,
-      cluster == 3 ~ 2,
-      cluster == 4 ~ 6,
-      cluster == 5 ~ 3,
-      cluster == 6 ~ 5
-    )
+    cluster = forward_mapper[cluster]
   ) %>%
   mutate(
     cluster = labelled(
@@ -89,11 +100,16 @@ data <- data %>%
     )
   )
 
-center_table <- km$centers %>%
-  round(3)
+center_table <- km$centers[reverse_mapper[1:6], ] %>%
+  round(3) %>%
+  tibble() %>%
+  mutate(
+    size = km$size[reverse_mapper[1:6]],
+    share = km$size[reverse_mapper[1:6]] / nrow(data)
+  )
 
 center_table_rows <- c("Primary", "Temporary", "Home", "Primary_Home", "Temporary_Home", "All_Mixed")
-center_table_cols <- c("Primary", "Temporary", "Home")
+center_table_cols <- c("Primary", "Temporary", "Home", "Size")
 
 rownames(center_table) <- center_table_rows
 colnames(center_table) <- center_table_cols

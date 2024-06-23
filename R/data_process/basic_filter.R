@@ -14,23 +14,7 @@ data <- data %>%
 print(nrow(data))
 
 data <- data %>%
-  filter(!is.na(final_weights))
-print(nrow(data))
-
-data <- data %>%
   filter(!is.na(C3_1))
-print(nrow(data))
-
-data <- data %>%
-  filter(flag_discrepancy_work_hours == 0)
-print(nrow(data))
-
-data <- data %>%
-  filter(flag_high_low_workplace == 0)
-print(nrow(data))
-
-data <- data %>%
-  filter(flag_too_many_work_hour_by_matrix == 0)
 print(nrow(data))
 
 data <- data %>%

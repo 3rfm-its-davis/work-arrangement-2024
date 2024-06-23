@@ -12,16 +12,8 @@ The first set of filters excluded the cases with any of the following criteria:
 
 - Did not report their income level (n=4,182)
 - Was not a paid worker in Fall 2023 (n=2,516)
-- Did not have a weight (n=2,493)
-- Did not report weekly work hours (n=2,490)
-- Had one or more flags within the work section
-  - `flag_discrepancy_work_hours` (n=2,434)
-    - Reported work hours in C3 and C13a (sum) are different by 1/3 or 3.
-  - `flag_high_low_workplace` (n=2,404)
-    - Flatlined at 0, 1, 4, or 5 throughout C5_1a to C5_1d.
-  - `flag_too_many_work_hour_by_matrix` (n=2,275)
-    - Selected every row of any matrix questions.
-- Reported that they were not permitted by the supervisor to remote work (n=1,531)
+- Did not report weekly work hours (n=2,513)
+- Reported that they were not permitted by the supervisor to remote work (n=1,675)
 
 ## Recoding of Work Arrangement Matrices
 
@@ -47,7 +39,12 @@ Several additional variables; `hours_day_{day}_period_{period}`, `hours_day_{day
 
 In the dataset, variables `C13a_{day}` stand for the reported aggregated work hours for the specific day.
 
-Firstly, if the ratio between the two metrics; `C13a` and `hours_total` are out of the range `c(0.75, 1.33)` (for now), the cases are excluded.
+Firstly, we excluded those who had discrepancy between the typical weekly work hours (C3_1) and the total work hours in the last week (sum of C13a):
+
+1. Hours from C3_1 > Hours from C13a \* 1.5 + 5 (n=1,550)
+2. Hours from C3_1 < Hours from C13a / 1.5 - 5 (n=1,514)
+
+Next, if the ratio between the two metrics; `C13a` and `hours_total` are out of the range `c(0.5, 2.00)`, the cases are excluded. (n=1,411)
 
 Also, if any day-level aggregated hours are
 
@@ -55,11 +52,13 @@ Also, if any day-level aggregated hours are
 2. Hours from C13a / Hours from C13b <= 0.5
 3. Hours from C13a / Hours from C13b >= 2
 
-(n=1,219)
+(n=1,308)
 
 If it passes the validation, the previously computed work hours for the entire week and the day were adjusted in proportion to the two differently reported work hours (i.e., no adjustment for the period of the day).
 
-Then, cases are excluded if the work hours exceed 16 for any day of the week. (n=1,215)
+Then, cases are excluded if the work hours exceed 16 for any day of the week. (n=1,297)
+
+Finally, we excluded those who worked 3 or fewer days (n=1,249) and those who worked less than 15 hours. (n=1,221)
 
 ## Factor Analysis
 
