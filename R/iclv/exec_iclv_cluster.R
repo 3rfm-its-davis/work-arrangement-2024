@@ -40,6 +40,10 @@ exec_iclv_cluster <- function() {
     mutate_if(
       is.numeric,
       as.numeric
+    ) %>%
+    mutate_at(
+      vars(starts_with("att_")),
+      function(x) (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
     )
 
   model_name <- "iclv_cluster_1"
@@ -66,6 +70,96 @@ exec_iclv_cluster <- function() {
     asc_4 = 0,
     asc_5 = 0,
     asc_6 = 0,
+    b_2_age_18_34 = 0,
+    b_2_age_55plus = 0,
+    b_3_age_18_34 = 0,
+    b_3_age_55plus = 0,
+    b_4_age_18_34 = 0,
+    b_4_age_55plus = 0,
+    b_5_age_18_34 = 0,
+    b_5_age_55plus = 0,
+    b_6_age_18_34 = 0,
+    b_6_age_55plus = 0,
+    b_2_gender_women = 0,
+    b_3_gender_women = 0,
+    b_4_gender_women = 0,
+    b_5_gender_women = 0,
+    b_6_gender_women = 0,
+    b_2_kids_kids = 0,
+    b_3_kids_kids = 0,
+    b_4_kids_kids = 0,
+    b_5_kids_kids = 0,
+    b_6_kids_kids = 0,
+    b_2_genderkids_women_kids = 0,
+    b_3_genderkids_women_kids = 0,
+    b_4_genderkids_women_kids = 0,
+    b_5_genderkids_women_kids = 0,
+    b_6_genderkids_women_kids = 0,
+    b_2_income_50minus = 0,
+    b_3_income_50minus = 0,
+    b_4_income_50minus = 0,
+    b_5_income_50minus = 0,
+    b_6_income_50minus = 0,
+    b_2_income_100_149 = 0,
+    b_3_income_100_149 = 0,
+    b_4_income_100_149 = 0,
+    b_5_income_100_149 = 0,
+    b_6_income_100_149 = 0,
+    b_2_income_150plus = 0,
+    b_3_income_150plus = 0,
+    b_4_income_150plus = 0,
+    b_5_income_150plus = 0,
+    b_6_income_150plus = 0,
+    b_2_education_highschool = 0,
+    b_3_education_highschool = 0,
+    b_4_education_highschool = 0,
+    b_5_education_highschool = 0,
+    b_6_education_highschool = 0,
+    b_2_education_graduate = 0,
+    b_3_education_graduate = 0,
+    b_4_education_graduate = 0,
+    b_5_education_graduate = 0,
+    b_6_education_graduate = 0,
+    b_2_impedance_20_39 = 0,
+    b_3_impedance_20_39 = 0,
+    b_4_impedance_20_39 = 0,
+    b_5_impedance_20_39 = 0,
+    b_6_impedance_20_39 = 0,
+    b_2_impedance_40_59 = 0,
+    b_3_impedance_40_59 = 0,
+    b_4_impedance_40_59 = 0,
+    b_5_impedance_40_59 = 0,
+    b_6_impedance_40_59 = 0,
+    b_2_impedance_60plus = 0,
+    b_3_impedance_60plus = 0,
+    b_4_impedance_60plus = 0,
+    b_5_impedance_60plus = 0,
+    b_6_impedance_60plus = 0,
+    b_2_neighborhood_suburban = 0,
+    b_3_neighborhood_suburban = 0,
+    b_4_neighborhood_suburban = 0,
+    b_5_neighborhood_suburban = 0,
+    b_6_neighborhood_suburban = 0,
+    b_2_neighborhood_town = 0,
+    b_3_neighborhood_town = 0,
+    b_4_neighborhood_town = 0,
+    b_5_neighborhood_town = 0,
+    b_6_neighborhood_town = 0,
+    b_2_jobtype12_professional = 0,
+    b_3_jobtype12_professional = 0,
+    b_4_jobtype12_professional = 0,
+    b_5_jobtype12_professional = 0,
+    b_6_jobtype12_professional = 0,
+    b_2_jobtype12_administrative = 0,
+    b_3_jobtype12_administrative = 0,
+    b_4_jobtype12_administrative = 0,
+    b_5_jobtype12_administrative = 0,
+    b_6_jobtype12_administrative = 0,
+    b_2_homeownership_nonown = 0,
+    b_3_homeownership_nonown = 0,
+    b_4_homeownership_nonown = 0,
+    b_5_homeownership_nonown = 0,
+    b_6_homeownership_nonown = 0,
     l_2_1 = 0,
     l_2_2 = 0,
     l_2_3 = 0,
@@ -233,30 +327,120 @@ exec_iclv_cluster <- function() {
       V <- list()
       V[["cluster1"]] <- 0
       V[["cluster2"]] <- asc_2 +
+        b_2_age_18_34 * (age == 1) +
+        b_2_age_55plus * (age == 3) +
+        b_2_gender_women * (gender == 1) +
+        b_2_kids_kids * (kids == 1) +
+        b_2_genderkids_women_kids * (gender == 1 & kids == 1) +
+        b_2_income_50minus * (income == 1) +
+        b_2_income_100_149 * (income == 3) +
+        b_2_income_150plus * (income == 4) +
+        b_2_education_highschool * (education12 == 1) +
+        b_2_education_graduate * (education12 == 3) +
+        b_2_impedance_20_39 * (impedance == 2) +
+        b_2_impedance_40_59 * (impedance == 3) +
+        b_2_impedance_60plus * (impedance == 4) +
+        b_2_neighborhood_suburban * (neighborhood == 2) +
+        b_2_neighborhood_town * (neighborhood == 3) +
+        b_2_jobtype12_professional * (jobtype12 == 2) +
+        b_2_jobtype12_administrative * (jobtype12 == 3) +
+        b_2_homeownership_nonown * (homeownership == 1) +
         l_2_1 * lv_1 +
         l_2_2 * lv_2 +
         l_2_3 * lv_3 +
         l_2_4 * lv_4 +
         l_2_5 * lv_5
       V[["cluster3"]] <- asc_3 +
+        b_3_age_18_34 * (age == 1) +
+        b_3_age_55plus * (age == 3) +
+        b_3_gender_women * (gender == 1) +
+        b_3_kids_kids * (kids == 1) +
+        b_3_genderkids_women_kids * (gender == 1 & kids == 1) +
+        b_3_income_50minus * (income == 1) +
+        b_3_income_100_149 * (income == 3) +
+        b_3_income_150plus * (income == 4) +
+        b_3_education_highschool * (education12 == 1) +
+        b_3_education_graduate * (education12 == 3) +
+        b_3_impedance_20_39 * (impedance == 2) +
+        b_3_impedance_40_59 * (impedance == 3) +
+        b_3_impedance_60plus * (impedance == 4) +
+        b_3_neighborhood_suburban * (neighborhood == 2) +
+        b_3_neighborhood_town * (neighborhood == 3) +
+        b_3_jobtype12_professional * (jobtype12 == 2) +
+        b_3_jobtype12_administrative * (jobtype12 == 3) +
+        b_3_homeownership_nonown * (homeownership == 1) +
         l_3_1 * lv_1 +
         l_3_2 * lv_2 +
         l_3_3 * lv_3 +
         l_3_4 * lv_4 +
         l_3_5 * lv_5
       V[["cluster4"]] <- asc_4 +
+        b_4_age_18_34 * (age == 1) +
+        b_4_age_55plus * (age == 3) +
+        b_4_gender_women * (gender == 1) +
+        b_4_kids_kids * (kids == 1) +
+        b_4_genderkids_women_kids * (gender == 1 & kids == 1) +
+        b_4_income_50minus * (income == 1) +
+        b_4_income_100_149 * (income == 3) +
+        b_4_income_150plus * (income == 4) +
+        b_4_education_highschool * (education12 == 1) +
+        b_4_education_graduate * (education12 == 3) +
+        b_4_impedance_20_39 * (impedance == 2) +
+        b_4_impedance_40_59 * (impedance == 3) +
+        b_4_impedance_60plus * (impedance == 4) +
+        b_4_neighborhood_suburban * (neighborhood == 2) +
+        b_4_neighborhood_town * (neighborhood == 3) +
+        b_4_jobtype12_professional * (jobtype12 == 2) +
+        b_4_jobtype12_administrative * (jobtype12 == 3) +
+        b_4_homeownership_nonown * (homeownership == 1) +
         l_4_1 * lv_1 +
         l_4_2 * lv_2 +
         l_4_3 * lv_3 +
         l_4_4 * lv_4 +
         l_4_5 * lv_5
       V[["cluster5"]] <- asc_5 +
+        b_5_age_18_34 * (age == 1) +
+        b_5_age_55plus * (age == 3) +
+        b_5_gender_women * (gender == 1) +
+        b_5_kids_kids * (kids == 1) +
+        b_5_genderkids_women_kids * (gender == 1 & kids == 1) +
+        b_5_income_50minus * (income == 1) +
+        b_5_income_100_149 * (income == 3) +
+        b_5_income_150plus * (income == 4) +
+        b_5_education_highschool * (education12 == 1) +
+        b_5_education_graduate * (education12 == 3) +
+        b_5_impedance_20_39 * (impedance == 2) +
+        b_5_impedance_40_59 * (impedance == 3) +
+        b_5_impedance_60plus * (impedance == 4) +
+        b_5_neighborhood_suburban * (neighborhood == 2) +
+        b_5_neighborhood_town * (neighborhood == 3) +
+        b_5_jobtype12_professional * (jobtype12 == 2) +
+        b_5_jobtype12_administrative * (jobtype12 == 3) +
+        b_5_homeownership_nonown * (homeownership == 1) +
         l_5_1 * lv_1 +
         l_5_2 * lv_2 +
         l_5_3 * lv_3 +
         l_5_4 * lv_4 +
         l_5_5 * lv_5
       V[["cluster6"]] <- asc_6 +
+        b_6_age_18_34 * (age == 1) +
+        b_6_age_55plus * (age == 3) +
+        b_6_gender_women * (gender == 1) +
+        b_6_kids_kids * (kids == 1) +
+        b_6_genderkids_women_kids * (gender == 1 & kids == 1) +
+        b_6_income_50minus * (income == 1) +
+        b_6_income_100_149 * (income == 3) +
+        b_6_income_150plus * (income == 4) +
+        b_6_education_highschool * (education12 == 1) +
+        b_6_education_graduate * (education12 == 3) +
+        b_6_impedance_20_39 * (impedance == 2) +
+        b_6_impedance_40_59 * (impedance == 3) +
+        b_6_impedance_60plus * (impedance == 4) +
+        b_6_neighborhood_suburban * (neighborhood == 2) +
+        b_6_neighborhood_town * (neighborhood == 3) +
+        b_6_jobtype12_professional * (jobtype12 == 2) +
+        b_6_jobtype12_administrative * (jobtype12 == 3) +
+        b_6_homeownership_nonown * (homeownership == 1) +
         l_6_1 * lv_1 +
         l_6_2 * lv_2 +
         l_6_3 * lv_3 +
@@ -307,5 +491,23 @@ exec_iclv_cluster <- function() {
   # apollo_sink()
 }
 
+data <- read_sav(
+  file.path(
+    "..",
+    "Dataset",
+    "covid19-2023-merged-processed.sav"
+  )
+)
+
 exec_iclv_cluster()
 apollo_sink()
+
+model <- readRDS(
+  file.path("output", "iclv", "iclv_cluster_1_model.rds")
+)
+
+output_df <- apollo_modelOutput(model, modelOutput_settings = list(
+  printPVal = TRUE
+)) %>% as.data.frame()
+
+write_csv(output_df, file = file.path("output", "iclv", "iclv_cluster_1_model.csv"))

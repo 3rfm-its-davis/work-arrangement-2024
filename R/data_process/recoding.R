@@ -2,18 +2,16 @@ data <- data %>%
   mutate(
     age = 2024 - as.numeric(B1_1),
     age = case_when(
-      age < 30 ~ 1,
-      age < 45 ~ 2,
-      age < 65 ~ 3,
-      TRUE ~ 4
+      age < 35 ~ 1,
+      age < 55 ~ 2,
+      TRUE ~ 3
     ) %>%
       labelled(
         label = "Age group",
         labels = c(
-          "Under 30" = 1,
-          "30-44" = 2,
-          "45-64" = 3,
-          "65+" = 4
+          "Under 35" = 1,
+          "35-54" = 2,
+          "55+" = 4
         )
       ),
     gender = case_when(
