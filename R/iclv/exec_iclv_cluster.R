@@ -160,6 +160,38 @@ exec_iclv_cluster <- function() {
     b_4_homeownership_nonown = 0,
     b_5_homeownership_nonown = 0,
     b_6_homeownership_nonown = 0,
+    a_1_age_18_34 = 0,
+    a_1_age_55plus = 0,
+    a_1_income_150plus = 0,
+    a_1_kids_kids = 0,
+    a_1_education_bachelorplus = 0,
+    a_1_impedance_20plus = 0,
+    a_1_jobtype12_administrative = 0,
+    a_1_neighborhood_nonurban = 0,
+    a_1_homeownership_nonown = 0,
+    a_2_age_18_34 = 0,
+    a_2_age_55plus = 0,
+    a_2_gender_women = 0,
+    a_2_kids_kids = 0,
+    a_2_neighborhood_suburban = 0,
+    a_2_homeownership_nonown = 0,
+    a_3_age_18_34 = 0,
+    a_3_income_150plus = 0,
+    a_3_kids_kids = 0,
+    a_3_genderkids_women_kids = 0,
+    a_3_education_bachelorplus = 0,
+    a_3_neighborhood_suburban = 0,
+    a_4_jobtype12_administrative = 0,
+    a_4_neighborhood_nonurban = 0,
+    a_4_homeownership_nonown = 0,
+    a_5_age_18_34 = 0,
+    a_5_age_55plus = 0,
+    a_5_gender_women = 0,
+    a_5_income_150plus = 0,
+    a_5_education_bachelorplus = 0,
+    a_5_impendance_20_39 = 0,
+    a_5_jobtype12_nonmanual = 0,
+    a_5_neighborhood_nonurban = 0,
     l_2_1 = 0,
     l_2_2 = 0,
     l_2_3 = 0,
@@ -255,11 +287,43 @@ exec_iclv_cluster <- function() {
   apollo_randCoeff <- function(apollo_beta, apollo_inputs) {
     randcoeff <- list()
 
-    randcoeff[["lv_1"]] <- n_1
-    randcoeff[["lv_2"]] <- n_2
-    randcoeff[["lv_3"]] <- n_3
-    randcoeff[["lv_4"]] <- n_4
-    randcoeff[["lv_5"]] <- n_5
+    randcoeff[["lv_1"]] <- n_1 +
+      a_1_age_18_34 * (age == 1) +
+      a_1_age_55plus * (age == 3) +
+      a_1_income_150plus * (income == 4) +
+      a_1_kids_kids * (kids == 1) +
+      a_1_education_bachelorplus * (education12 >= 2) +
+      a_1_impedance_20plus * (impedance >= 2) +
+      a_1_jobtype12_administrative * (jobtype12 == 3) +
+      a_1_neighborhood_nonurban * (neighborhood >= 2) +
+      a_1_homeownership_nonown * (homeownership == 1)
+    randcoeff[["lv_2"]] <- n_2 +
+      a_2_age_18_34 * (age == 1) +
+      a_2_age_55plus * (age == 3) +
+      a_2_gender_women * (gender == 1) +
+      a_2_kids_kids * (kids == 1) +
+      a_2_neighborhood_suburban * (neighborhood == 2) +
+      a_2_homeownership_nonown * (homeownership == 1)
+    randcoeff[["lv_3"]] <- n_3 +
+      a_3_age_18_34 * (age == 1) +
+      a_3_income_150plus * (income == 4) +
+      a_3_kids_kids * (kids == 1) +
+      a_3_genderkids_women_kids * (gender == 1 & kids == 1) +
+      a_3_education_bachelorplus * (education12 >= 2) +
+      a_3_neighborhood_suburban * (neighborhood == 2)
+    randcoeff[["lv_4"]] <- n_4 +
+      a_4_jobtype12_administrative * (jobtype12 == 3) +
+      a_4_neighborhood_nonurban * (neighborhood >= 2) +
+      a_4_homeownership_nonown * (homeownership == 1)
+    randcoeff[["lv_5"]] <- n_5 +
+      a_5_age_18_34 * (age == 1) +
+      a_5_age_55plus * (age == 3) +
+      a_5_gender_women * (gender == 1) +
+      a_5_income_150plus * (income == 4) +
+      a_5_education_bachelorplus * (education12 >= 2) +
+      a_5_impendance_20_39 * (impedance == 2) +
+      a_5_jobtype12_nonmanual * (jobtype12 >= 2) +
+      a_5_neighborhood_nonurban * (neighborhood >= 2)
     return(randcoeff)
   }
 

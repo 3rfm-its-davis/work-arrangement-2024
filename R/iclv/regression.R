@@ -65,13 +65,6 @@ for (i in 1:5) {
     rownames_to_column("variable") %>%
     mutate(variable = rnames) %>%
     filter(`Pr(>|t|)` < 0.05) %>%
-    select(variable) %>%
-    mutate(
-      variable = variable %>%
-        str_replace_all("\\s==\\s\\d", "")
-    ) %>%
-    distinct() %>%
-    unlist() %>%
-    as.character() %>%
+    select(variable, Estimate) %>%
     print()
 }
