@@ -59,7 +59,7 @@ exec_iclv_cluster <- function() {
   - Age",
     indivID = "row_index",
     outputDirectory = file.path("output", "iclv"),
-    nCores = 16
+    nCores = 8
   )
 
   assign("apollo_control", apollo_control, envir = globalenv())

@@ -35,16 +35,23 @@ Therefore, the variable `hours_day_{day}_period_{period}_place_{workplace}` stan
 
 Several additional variables; `hours_day_{day}_period_{period}`, `hours_day_{day}_place_{workplace}`, `hours_day_{day}`, `hours_total_place_{workplace}`, and `hours_total` respectively represent the aggregated work hours in the corresponding context.
 
+## Cutoff Based on Workdays and Work Hours
+
+Workers with a small number of workdays and work hours are excluded:
+
+1. Workdays < 4 (n=1,492)
+1. Work hours < 15 (n=1,454)
+
 ## Adjustment of Work Hours
 
 In the dataset, variables `C13a_{day}` stand for the reported aggregated work hours for the specific day.
 
 Firstly, we excluded those who had discrepancy between the typical weekly work hours (C3_1) and the total work hours in the last week (sum of C13a):
 
-1. Hours from C3_1 > Hours from C13a \* 1.5 + 5 (n=1,550)
-2. Hours from C3_1 < Hours from C13a / 1.5 - 5 (n=1,514)
+1. Hours from C3_1 > Hours from C13a \* 1.5 + 5 (n=1,434)
+2. Hours from C3_1 < Hours from C13a / 1.5 - 5 (n=1,401)
 
-Next, if the ratio between the two metrics; `C13a` and `hours_total` are out of the range `c(0.5, 2.00)`, the cases are excluded. (n=1,411)
+Next, if the ratio between the two metrics; `C13a` and `hours_total` are out of the range `c(0.5, 2.00)`, the cases are excluded. (n=1,327)
 
 Also, if any day-level aggregated hours are
 
@@ -52,13 +59,11 @@ Also, if any day-level aggregated hours are
 2. Hours from C13a / Hours from C13b <= 0.5
 3. Hours from C13a / Hours from C13b >= 2
 
-(n=1,308)
+(n=1,234)
 
 If it passes the validation, the previously computed work hours for the entire week and the day were adjusted in proportion to the two differently reported work hours (i.e., no adjustment for the period of the day).
 
-Then, cases are excluded if the work hours exceed 16 for any day of the week. (n=1,297)
-
-Finally, we excluded those who worked 3 or fewer days (n=1,249) and those who worked less than 15 hours. (n=1,221)
+Then, cases are excluded if the work hours exceed 16 for any day of the week. (n=1,224)
 
 ## Factor Analysis
 
