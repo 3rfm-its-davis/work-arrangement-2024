@@ -12,6 +12,9 @@ exec_iclv_cluster <- function() {
       commute,
       neighborhood,
       homeownership,
+      pop_density,
+      ret_svc_density,
+      transit_freq_index,
       att_01 = A_a,
       att_02 = A_b,
       att_03 = A_c,
@@ -59,7 +62,7 @@ exec_iclv_cluster <- function() {
   - Age",
     indivID = "row_index",
     outputDirectory = file.path("output", "iclv"),
-    nCores = 8
+    nCores = 12
   )
 
   assign("apollo_control", apollo_control, envir = globalenv())
@@ -160,6 +163,21 @@ exec_iclv_cluster <- function() {
     b_4_homeownership_nonown = 0,
     b_5_homeownership_nonown = 0,
     b_6_homeownership_nonown = 0,
+    b_2_pop_density = 0,
+    b_3_pop_density = 0,
+    b_4_pop_density = 0,
+    b_5_pop_density = 0,
+    b_6_pop_density = 0,
+    b_2_ret_svc_density = 0,
+    b_3_ret_svc_density = 0,
+    b_4_ret_svc_density = 0,
+    b_5_ret_svc_density = 0,
+    b_6_ret_svc_density = 0,
+    b_2_transit_freq = 0,
+    b_3_transit_freq = 0,
+    b_4_transit_freq = 0,
+    b_5_transit_freq = 0,
+    b_6_transit_freq = 0,
     a_1_age_18_34 = 0,
     a_1_age_55plus = 0,
     a_1_income_150plus = 0,
@@ -409,6 +427,9 @@ exec_iclv_cluster <- function() {
         b_2_jobtype12_professional * (jobtype12 == 2) +
         b_2_jobtype12_administrative * (jobtype12 == 3) +
         b_2_homeownership_nonown * (homeownership == 1) +
+        b_2_pop_density * pop_density +
+        b_2_ret_svc_density * ret_svc_density +
+        b_2_transit_freq * transit_freq_index +
         l_2_1 * lv_1 +
         l_2_2 * lv_2 +
         l_2_3 * lv_3 +
@@ -433,6 +454,9 @@ exec_iclv_cluster <- function() {
         b_3_jobtype12_professional * (jobtype12 == 2) +
         b_3_jobtype12_administrative * (jobtype12 == 3) +
         b_3_homeownership_nonown * (homeownership == 1) +
+        b_3_pop_density * pop_density +
+        b_3_ret_svc_density * ret_svc_density +
+        b_3_transit_freq * transit_freq_index +
         l_3_1 * lv_1 +
         l_3_2 * lv_2 +
         l_3_3 * lv_3 +
@@ -457,6 +481,9 @@ exec_iclv_cluster <- function() {
         b_4_jobtype12_professional * (jobtype12 == 2) +
         b_4_jobtype12_administrative * (jobtype12 == 3) +
         b_4_homeownership_nonown * (homeownership == 1) +
+        b_4_pop_density * pop_density +
+        b_4_ret_svc_density * ret_svc_density +
+        b_4_transit_freq * transit_freq_index +
         l_4_1 * lv_1 +
         l_4_2 * lv_2 +
         l_4_3 * lv_3 +
@@ -481,6 +508,9 @@ exec_iclv_cluster <- function() {
         b_5_jobtype12_professional * (jobtype12 == 2) +
         b_5_jobtype12_administrative * (jobtype12 == 3) +
         b_5_homeownership_nonown * (homeownership == 1) +
+        b_5_pop_density * pop_density +
+        b_5_ret_svc_density * ret_svc_density +
+        b_5_transit_freq * transit_freq_index +
         l_5_1 * lv_1 +
         l_5_2 * lv_2 +
         l_5_3 * lv_3 +
@@ -505,6 +535,9 @@ exec_iclv_cluster <- function() {
         b_6_jobtype12_professional * (jobtype12 == 2) +
         b_6_jobtype12_administrative * (jobtype12 == 3) +
         b_6_homeownership_nonown * (homeownership == 1) +
+        b_6_pop_density * pop_density +
+        b_6_ret_svc_density * ret_svc_density +
+        b_6_transit_freq * transit_freq_index +
         l_6_1 * lv_1 +
         l_6_2 * lv_2 +
         l_6_3 * lv_3 +

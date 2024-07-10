@@ -24,6 +24,7 @@ source(file.path("data_process", "factor_analysis_a.R"))
 source(file.path("data_process", "factor_analysis_c.R"))
 source(file.path("data_process", "recoding.R"))
 source(file.path("data_process", "normalize_weights.R"))
+source(file.path("data_process", "built_environment.R"))
 source(file.path("data_process", "cluster.R"))
 
 write_sav(
