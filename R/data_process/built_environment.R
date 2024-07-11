@@ -20,7 +20,9 @@ geocoding <- read_csv(
     )
   ) %>%
   mutate(
-    ret_svc_density = ret_density + svc_density
+    pop_density = log(pop_density + 0.0001),
+    ret_svc_density = log(ret_density + svc_density + 0.0001),
+    transit_freq_index = log(transit_freq_index + 0.0001)
   ) %>%
   select(
     -ret_density,

@@ -62,7 +62,7 @@ exec_iclv_cluster <- function() {
   - Age",
     indivID = "row_index",
     outputDirectory = file.path("output", "iclv"),
-    nCores = 12
+    nCores = 8
   )
 
   assign("apollo_control", apollo_control, envir = globalenv())
@@ -605,6 +605,8 @@ model <- readRDS(
 
 output_df <- apollo_modelOutput(model, modelOutput_settings = list(
   printPVal = TRUE
-)) %>% as.data.frame()
+)) %>%
+  as.data.frame() %>%
+  .[, c(1, 7)]
 
 write_csv(output_df, file = file.path("output", "iclv", "iclv_cluster_1_model.csv"))
