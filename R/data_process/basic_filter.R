@@ -22,3 +22,9 @@ data <- data %>%
     C5_2a != 0
   )
 print(nrow(data))
+
+data <- data %>%
+  filter(
+    C9_a_1 <= 180
+  )
+print(nrow(data))

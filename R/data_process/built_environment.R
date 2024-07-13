@@ -7,10 +7,15 @@ geocoding <- read_csv(
 ) %>%
   select(
     ResponseId,
+    home_address = Home_full_,
+    work_address = Work_full_,
     pop_density = D1B,
     ret_density = D1C5_RET,
     svc_density = D1C5_SVC,
     transit_freq_index = D4E
+  ) %>%
+  mutate(
+    same_home_work = home_address == work_address
   ) %>%
   mutate_if(
     is.numeric,
