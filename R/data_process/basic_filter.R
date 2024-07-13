@@ -25,6 +25,8 @@ print(nrow(data))
 
 data <- data %>%
   filter(
-    C9_a_1 <= 180
+    !is.na(C9_a_1) &
+      C9_a_1 <= 180 |
+      is.na(C9_a_1)
   )
 print(nrow(data))

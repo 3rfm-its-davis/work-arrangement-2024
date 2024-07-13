@@ -103,7 +103,7 @@ data <- data %>%
       ),
     work_freq_primary = C5_1a,
     impedance = case_when(
-      is.na(C9_a_1) ~ NA,
+      is.na(C9_a_1) ~ 0,
       C9_a_1 < 19 ~ 1,
       C9_a_1 < 39 ~ 2,
       C9_a_1 < 59 ~ 3,
@@ -111,6 +111,7 @@ data <- data %>%
     ) %>% labelled(
       label = "Commute time between home and work",
       labels = c(
+        "Unknown" = 0,
         "0-19 Mins" = 1,
         "20-39 Mins" = 2,
         "40-59 Mins" = 3,

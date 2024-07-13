@@ -14,7 +14,6 @@ data <- read_sav(
     education12,
     impedance,
     jobtype12,
-    commute,
     neighborhood,
     homeownership,
     starts_with("factor_a_"),
@@ -46,6 +45,7 @@ for (i in 1:5) {
       (impedance == 2) +
       (impedance == 3) +
       (impedance == 4) +
+      is.na(impedance) +
       (jobtype12 == 2) +
       (jobtype12 == 3) +
       (neighborhood == 2) +

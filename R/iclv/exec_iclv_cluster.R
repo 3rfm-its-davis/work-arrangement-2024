@@ -122,6 +122,26 @@ exec_iclv_cluster <- function() {
     b_4_education_graduate = 0,
     b_5_education_graduate = 0,
     b_6_education_graduate = 0,
+    b_2_impedance_20_39 = 0,
+    b_3_impedance_20_39 = 0,
+    b_4_impedance_20_39 = 0,
+    b_5_impedance_20_39 = 0,
+    b_6_impedance_20_39 = 0,
+    b_2_impedance_40_59 = 0,
+    b_3_impedance_40_59 = 0,
+    b_4_impedance_40_59 = 0,
+    b_5_impedance_40_59 = 0,
+    b_6_impedance_40_59 = 0,
+    b_2_impedance_60plus = 0,
+    b_3_impedance_60plus = 0,
+    b_4_impedance_60plus = 0,
+    b_5_impedance_60plus = 0,
+    b_6_impedance_60plus = 0,
+    b_2_impedance_unknown = 0,
+    b_3_impedance_unknown = 0,
+    b_4_impedance_unknown = 0,
+    b_5_impedance_unknown = 0,
+    b_6_impedance_unknown = 0,
     b_2_neighborhood_suburban = 0,
     b_3_neighborhood_suburban = 0,
     b_4_neighborhood_suburban = 0,
@@ -167,6 +187,7 @@ exec_iclv_cluster <- function() {
     a_1_income_150plus = 0,
     a_1_kids_kids = 0,
     a_1_education_bachelorplus = 0,
+    a_1_impedance_20_59 = 0,
     a_1_jobtype12_administrative = 0,
     a_1_neighborhood_nonurban = 0,
     a_1_homeownership_nonown = 0,
@@ -190,6 +211,7 @@ exec_iclv_cluster <- function() {
     a_5_gender_women = 0,
     a_5_income_150plus = 0,
     a_5_education_bachelorplus = 0,
+    a_5_impendance_20_39 = 0,
     a_5_jobtype12_nonmanual = 0,
     a_5_neighborhood_nonurban = 0,
     l_2_1 = 0,
@@ -293,6 +315,7 @@ exec_iclv_cluster <- function() {
       a_1_income_150plus * (income == 4) +
       a_1_kids_kids * (kids == 1) +
       a_1_education_bachelorplus * (education12 >= 2) +
+      a_1_impedance_20_59 * (impedance == 2 | impedance == 3) +
       a_1_jobtype12_administrative * (jobtype12 == 3) +
       a_1_neighborhood_nonurban * (neighborhood >= 2) +
       a_1_homeownership_nonown * (homeownership == 1)
@@ -320,6 +343,7 @@ exec_iclv_cluster <- function() {
       a_5_gender_women * (gender == 1) +
       a_5_income_150plus * (income == 4) +
       a_5_education_bachelorplus * (education12 >= 2) +
+      a_5_impendance_20_39 * (impedance == 2) +
       a_5_jobtype12_nonmanual * (jobtype12 >= 2) +
       a_5_neighborhood_nonurban * (neighborhood >= 2)
     return(randcoeff)
@@ -399,6 +423,10 @@ exec_iclv_cluster <- function() {
         b_2_income_150plus * (income == 4) +
         b_2_education_highschool * (education12 == 1) +
         b_2_education_graduate * (education12 == 3) +
+        b_2_impedance_20_39 * (impedance == 2) +
+        b_2_impedance_40_59 * (impedance == 3) +
+        b_2_impedance_60plus * (impedance == 4) +
+        b_2_impedance_unknown * (impedance == 0) +
         b_2_neighborhood_suburban * (neighborhood == 2) +
         b_2_neighborhood_town * (neighborhood == 3) +
         b_2_jobtype12_professional * (jobtype12 == 2) +
@@ -423,6 +451,10 @@ exec_iclv_cluster <- function() {
         b_3_income_150plus * (income == 4) +
         b_3_education_highschool * (education12 == 1) +
         b_3_education_graduate * (education12 == 3) +
+        b_3_impedance_20_39 * (impedance == 2) +
+        b_3_impedance_40_59 * (impedance == 3) +
+        b_3_impedance_60plus * (impedance == 4) +
+        b_3_impedance_unknown * (impedance == 0) +
         b_3_neighborhood_suburban * (neighborhood == 2) +
         b_3_neighborhood_town * (neighborhood == 3) +
         b_3_jobtype12_professional * (jobtype12 == 2) +
@@ -447,6 +479,10 @@ exec_iclv_cluster <- function() {
         b_4_income_150plus * (income == 4) +
         b_4_education_highschool * (education12 == 1) +
         b_4_education_graduate * (education12 == 3) +
+        b_4_impedance_20_39 * (impedance == 2) +
+        b_4_impedance_40_59 * (impedance == 3) +
+        b_4_impedance_60plus * (impedance == 4) +
+        b_4_impedance_unknown * (impedance == 0) +
         b_4_neighborhood_suburban * (neighborhood == 2) +
         b_4_neighborhood_town * (neighborhood == 3) +
         b_4_jobtype12_professional * (jobtype12 == 2) +
@@ -471,6 +507,10 @@ exec_iclv_cluster <- function() {
         b_5_income_150plus * (income == 4) +
         b_5_education_highschool * (education12 == 1) +
         b_5_education_graduate * (education12 == 3) +
+        b_5_impedance_20_39 * (impedance == 2) +
+        b_5_impedance_40_59 * (impedance == 3) +
+        b_5_impedance_60plus * (impedance == 4) +
+        b_5_impedance_unknown * (impedance == 0) +
         b_5_neighborhood_suburban * (neighborhood == 2) +
         b_5_neighborhood_town * (neighborhood == 3) +
         b_5_jobtype12_professional * (jobtype12 == 2) +
@@ -495,6 +535,10 @@ exec_iclv_cluster <- function() {
         b_6_income_150plus * (income == 4) +
         b_6_education_highschool * (education12 == 1) +
         b_6_education_graduate * (education12 == 3) +
+        b_6_impedance_20_39 * (impedance == 2) +
+        b_6_impedance_40_59 * (impedance == 3) +
+        b_6_impedance_60plus * (impedance == 4) +
+        b_6_impedance_unknown * (impedance == 0) +
         b_6_neighborhood_suburban * (neighborhood == 2) +
         b_6_neighborhood_town * (neighborhood == 3) +
         b_6_jobtype12_professional * (jobtype12 == 2) +
